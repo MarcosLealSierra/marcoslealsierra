@@ -9,10 +9,10 @@ from os import environ
 #db_data = [DB_HOST, DB_USER, DB_PASS, DB_NAME]
 
 POST = FieldStorage()
-DOCUMENT_ROOT = '/srv/websites/marcoslealsierra.com/rootsystem'
+DOCUMENT_ROOT = '/srv/websites/marcoslealsierra/rootsystem'
 PRIVATE_DIR = DOCUMENT_ROOT.replace('rootsystem', 'private')
 TMP_DIR = "/tmp"
-LOG_FILE = '{}/logs/marcoslealsierra.com.log'.format(PRIVATE_DIR)
+LOG_FILE = '{}/logs/marcoslealsierra.log'.format(PRIVATE_DIR)
 
 DEFAULT_RESOURCE = "/page/inicio"
 SHOW_ERROR_404 = False  # Produccion, muestra el recurso por defualt en la raiz
