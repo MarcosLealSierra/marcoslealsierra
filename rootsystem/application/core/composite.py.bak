@@ -1,0 +1,17 @@
+#TODO reemplazar exec por __import__(ver xfc)
+
+class Composite(object):
+
+    def __init__(self, nombre_clase):
+        clslower = nombre_clase.lower()
+        exec "from modules.{} import {}".format(clslower, nombre_clase)
+        self.clase = locals()[nombre_clase]
+
+    def compose(self, obj):
+        if isinstance(obj, self.clase) or obj is None:
+            return obj
+        else:
+            actual = str(type(obj))
+            esperado = self.clase.__name__
+            msg = "{} is not an instance of {}".format(actual, esperado)
+            raise TypeError(msg)

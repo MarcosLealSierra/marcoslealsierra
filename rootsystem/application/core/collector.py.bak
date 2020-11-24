@@ -1,0 +1,25 @@
+#-*- coding: utf-8 -*-
+from core.db import DBQuery
+
+
+class CollectorObject(object):
+
+    def __init__(self):
+        self.collection = []
+
+    def add_objeto(self, obj):
+        self.collection.append(obj)
+
+    def get(self, clase):
+        tabla = clase.lower()
+        sql = "SELECT {}_id FROM {}".format(tabla, tabla)
+        registros = DBQuery().execute(sql)
+        exec "from modules.{} import {}".format(tabla, clase)
+
+        for tupla in registros:
+            obj = locals()[clase]()
+            exec "obj.{}_id = '{}'".format(tabla, tupla[0])
+            obj.select()
+            self.add_objeto(obj)
+
+        return self.collection
